@@ -1,15 +1,19 @@
-let t1 = document.querySelectorAll('[class^="tab"]')
-let k1 = document.querySelectorAll('[class^="tab__content"]')
+let menu = document.getElementsByClassName('tab')
+let content = document.getElementsByClassName('tab__content')
 
-analiz = (i) => {for (let m = 1; m<k1.length; m++) {
-    if (m == i-5) {
-        k1[m].classList.value = "tab__content tab__content_active";
-        t1[m+50].classList.value = "tab tab_active"
-    } else {
-        t1[m+5].classList.value = "tab"
-        k1[m].classList.value = "tab__content"
-
+function correctz(name) {
+    for (let i=0; i<menu.length; i++){
+        if (menu[i].textContent == name) {
+            menu[i].className = "tab tab_active",
+            content[i].className = "tab__content  tab__content_active" 
+        } else {
+            menu[i].className = "tab",
+            content[i].className = "tab__content" 
+        }
     }
-}}
+}
 
-for (let i = 6; i<t1.length; i++) {t1[i].onclick = () => { analiz(i) }}
+document.querySelectorAll('.tab').forEach(li => li.addEventListener('click', (ev) => {
+    ev.preventDefault(),
+    correctz(ev.currentTarget.textContent)    
+}))
